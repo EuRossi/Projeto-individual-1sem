@@ -1,0 +1,41 @@
+o que
+   juntar todos os manuais dos dbvs e criar um elo de comunicação entre os dbvs que tem duvidas
+
+por quie
+   um dos grandes problemas enfrentados para alguns membros é ser novato de diretoria e não saber exatamente o que faz e como fazer da maneira correta, isso pode acarretar varios problemas como pequenos conflitos de informações até o clube ser guiado fora das devidas leis e parametros
+
+onde
+   está solução é direcionada para o clube de desbravadores
+
+como
+   criar um site que consegue linkar pessoas de varios lugares diferentes e dar a opção deles tirarem duvidas entre usuarios
+
+quem
+   eu
+
+quando
+   1° parte 30/05 || 2° parte pós spritn
+
+
+-----------------------------------------
+Home
+um banner com botão para a pagina sobre o clube
+algumas informações basicos
+
+sobre o clube
+falar sobre o glube
+qual a missao
+sobre o lenço
+falar sobre a lei, voto, lema e alvo
+manuais dos dbv por classe
+manuais de ordem unida
+manuais de secretaria
+
+pessoa logada
+tem acesso a todo site
+pode publicar uma mensagem
+pode comentar uma pub
+tem acesso a todos os posts
+
+-- desejavel --
+questionario para dizer em qual area do clube ele mais se daria bem
