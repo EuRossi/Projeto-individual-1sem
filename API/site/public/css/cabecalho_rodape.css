@@ -1,0 +1,38 @@
+.container {
+  width: 80%;
+  margin: auto;
+  display: flex;
+}
+
+.header .container {
+  margin: 10px auto;
+  justify-content: space-around;
+  border-radius: 20px;
+  box-sizing: border-box;
+  background: #ffffff;
+  box-shadow:-14px -14px 15px #fbfbfc, 7px 7px 10px var(--baseVermelha) ;
+
+}
+
+.imgCabecalho {
+  width: 75px;
+}
+
+.header a {
+  text-decoration: none;
+  color: var(--letraPreta);
+}
+
+.agora {
+  font-weight: 700;
+  border-bottom: 3px solid var(--baseVermelha);
+}
+
+.navbar {
+  width: 55%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  list-style: none;
+  color: var(--letraPreta);
+}

@@ -1,6 +1,6 @@
-create database projeto_individual;
+create database DBV;
 
-use projeto_individual;
+use DBV;
 
 create table usuario(
 	idUsuario int primary key auto_increment,
@@ -8,7 +8,7 @@ create table usuario(
     email varchar(45) not null,
     senha varchar (20) not null,
     tpUsuario char(3) not null,
-    check (tpUsuario = 'adm' or tpUsuario = 'usu')
+    constraint ckTpUsu check (tpUsuario = 'adm' or tpUsuario = 'usu') 
     );
     
 create table publicacao(

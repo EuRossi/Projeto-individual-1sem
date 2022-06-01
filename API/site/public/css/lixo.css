@@ -336,12 +336,3 @@ input {
   cursor: pointer;
 }
 
-/* pagina extra - simulador */
-.simulador {
-  color: white;
-
-}
-
-.simulador .container {
-  flex-direction: column
-}
