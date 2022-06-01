@@ -36,3 +36,44 @@
   list-style: none;
   color: var(--letraPreta);
 }
+
+/* rodape */
+
+.footer {
+  color: #fff;
+  display: flex;
+  font-size: 15px;
+}
+
+.footer a {
+  text-decoration: none;
+  color: var(--letraPreta);
+}
+
+.footer_um .container {
+  justify-content: space-around;
+}
+
+
+.footer_um{
+  height: 75px;
+  border: 3px solid var(--baseVermelha);
+  background-color: #008be3;
+}
+
+.imgFooter{
+  width: 50px;
+}
+
+.footer_dois .container {
+  justify-content: center;
+}
+
+.navbarfooter{
+  width: 40%;
+}
+
+.footer_dois{
+  height: 50px;
+  background-color: #050648;
+}
