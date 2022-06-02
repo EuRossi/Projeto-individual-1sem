@@ -38,6 +38,10 @@
 }
 
 /* rodape */
+footer{
+  left: 0;
+  bottom: 0;
+}
 
 .footer {
   color: #fff;
