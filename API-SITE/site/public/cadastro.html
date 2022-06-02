@@ -5,14 +5,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Cadastro</title>
 
-
     <script src="./js/funcoes.js"></script>
-
-
-    <link rel="icon" href="./assets/icon/favicon.ico">
+    <link rel="icon" href="./assets/img/agnusDei.png">
     <link rel="stylesheet" href="./css/cabecalho_rodape.css">
     <link rel="stylesheet" href="./css/root_reset.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -116,22 +112,18 @@
             </div>
         </div>
     </footer>
-
-
 </body>
-
 </html>
 
 <script>
     function cadastrar() {
         aguardar();
 
-        //Recupere o valor da nova input pelo nome do id
-        // Agora vá para o método fetch logo abaixo
         var nomeVar = nome_input.value;
         var emailVar = email_input.value;
         var senhaVar = senha_input.value;
         var confirmacaoSenhaVar = confirmacao_senha_input.value;
+        var tpUsuarioVar = "usu";
 
         if (nomeVar == "" || emailVar == "" || senhaVar == "" || confirmacaoSenhaVar == "") {
             cardErro.style.display = "block"
@@ -151,11 +143,10 @@
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
-                // crie um atributo que recebe o valor recuperado aqui
-                // Agora vá para o arquivo routes/usuario.js
                 nomeServer: nomeVar,
                 emailServer: emailVar,
-                senhaServer: senhaVar
+                senhaServer: senhaVar,
+                tpUsuarioServer: tpUsuarioVar
             })
         }).then(function (resposta) {
 
