@@ -1,0 +1,152 @@
+body{
+    margin: 0;
+    padding: 0;
+height: 100vh;
+width: 100%;
+background-image: url(../imgs/fundoindexteste.jpg);
+background-repeat: no-repeat;
+background-size: cover;
+background-attachment: fixed;
+
+
+background-position-x: center;
+background-position-y: center;
+filter:brightness(120%);
+color: #fff;
+font-family: 'Cardo', serif;
+font-family: 'Great Vibes', cursive;
+font-family: 'Lobster', cursive;
+font-family: 'Mochiy Pop One', sans-serif;
+font-family: 'Shadows Into Light', cursive;
+font-family: 'Source Sans Pro', sans-serif;
+
+
+}
+@font-face {
+    font-family:'flame' ;
+    src: url('../fontes/Cuadra-Bold.otf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+.titulo-players{
+    position: fixed;
+    margin-top: -565px;
+    margin-left:170px;
+    font-size: 3rem;
+    font-family:'flame' ;
+    color: #fff;
+}
+
+.content{
+    height: 520px;
+    width: 935px;
+    border-radius: 20px;
+    overflow: hidden;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 10px 10px 10px 10px rgba(0, 0, 0, 0.747);
+    
+}
+
+.navigation{
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translate(-50%);
+    display: flex;
+}
+
+.bar{
+    width: 25px;
+    height: 7px;
+    border: 2px solid white;
+    margin: 10px;
+    border-radius: 350px;
+    cursor: pointer;
+    transition: 0.4s;
+    margin-top: -140px;
+}
+
+.bar:hover{
+background: white;
+}
+    
+input{
+    display: none;
+}
+
+.slides{
+    display: flex;
+    width: 1200%;
+    height: 100%;
+    
+}
+
+.slide{
+    width: 8.33%;
+    transition: 0.6s;
+}
+
+.slide img{
+    width: 100%;
+    height: 75%;
+
+}
+.slide p{
+    width: 100%;
+    height: 25%;
+    font-size: 20px;
+    line-height: 20px;
+    margin-left: 1%;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.747);
+    
+}
+
+
+
+#slide1:checked ~ .s1{
+    margin-left: 0;
+}
+
+#slide2:checked ~ .s1{
+    margin-left: -8.33%;
+}
+#slide3:checked ~ .s1{
+    margin-left: -16.66%;
+}
+#slide4:checked ~ .s1{
+    margin-left: -24.99%;
+}
+#slide5:checked ~ .s1{
+    margin-left: -33.32%;
+}
+#slide6:checked ~ .s1{
+    margin-left: -41.65%;
+}
+#slide7:checked ~ .s1{
+    margin-left: -49.98%;
+}
+#slide8:checked ~ .s1{
+    margin-left: -58.31%;
+}
+#slide9:checked ~ .s1{
+    margin-left: -66.64%;
+}
+#slide10:checked ~ .s1{
+    margin-left: -74.97%;
+}
+#slide11:checked ~ .s1{
+    margin-left: -83.3%;
+}
+#slide12:checked ~ .s1{
+    margin-left: -91.63%;
+}
+
+.content-father{
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+}

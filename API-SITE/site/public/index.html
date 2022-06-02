@@ -11,8 +11,9 @@
     <script src="./js/funcoes.js"></script>
 
     <link rel="icon" href="./assets/img/agnusDei.png">
-    <link rel="stylesheet" href="./css/cabecalho_rodape.css">
     <link rel="stylesheet" href="./css/index.css">
+    <link rel="stylesheet" href="./css/cabecalho_rodape.css">
+    <link rel="stylesheet" href="./css/slide.css">
     <link rel="stylesheet" href="./css/root_reset.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
 </head>
@@ -59,61 +60,129 @@
             <!-- https://freefrontend.com/css-neumorphism-examples/ -->
         </div>
 
-        <!-- https://codepen.io/Schepp/pen/WNbQByE -->
-        <!-- https://splidejs.com/premium    -->
-        <!-- https://www.youtube.com/watch?v=SGwHpzgqzgk -->
-        <!-- https://www.youtube.com/watch?v=BpzyuuPIEaQ -->
         <!-- cardas -->
 
-        <!-- <div class="carrosel">
-
-            <h1>IDEAIS</h1>
-
-            <section class="carousel" aria-label="Gallery">
-                <h1>teste</h1>
-                <ol class="carousel__viewport">
-                    <li id="carousel__slide1" tabindex="0" class="carousel__slide">
-                        <div class="carousel__snapper">
-                            <a href="#carousel__slide4" class="carousel__prev">Go to last slide</a>
-                            <a href="#carousel__slide2" class="carousel__next">Go to next slide</a>
-                        </div>
-                    </li>
-                    <li id="carousel__slide2" tabindex="0" class="carousel__slide">
-                        <div class="carousel__snapper"></div>
-                        <a href="#carousel__slide1" class="carousel__prev">Go to previous slide</a>
-                        <a href="#carousel__slide3" class="carousel__next">Go to next slide</a>
-                    </li>
-                    <li id="carousel__slide3" tabindex="0" class="carousel__slide">
-                        <div class="carousel__snapper"></div>
-                        <a href="#carousel__slide2" class="carousel__prev">Go to previous slide</a>
-                        <a href="#carousel__slide4" class="carousel__next">Go to next slide</a>
-                    </li>
-                    <li id="carousel__slide4" tabindex="0" class="carousel__slide">
-                        <div class="carousel__snapper"></div>
-
-                        <a href="#carousel__slide3" class="carousel__prev">Go to previous slide</a>
-                        <a href="#carousel__slide1" class="carousel__next">Go to first slide</a>
-                    </li>
-                </ol>
-                <aside class="carousel__navigation">
-                    <ol class="carousel__navigation-list">
-                        <li class="carousel__navigation-item">
-                            <a href="#carousel__slide1" class="carousel__navigation-button">Go to slide 1</a>
-                        </li>
-                        <li class="carousel__navigation-item">
-                            <a href="#carousel__slide2" class="carousel__navigation-button">Go to slide 2</a>
-                        </li>
-                        <li class="carousel__navigation-item">
-                            <a href="#carousel__slide3" class="carousel__navigation-button">Go to slide 3</a>
-                        </li>
-                        <li class="carousel__navigation-item">
-                            <a href="#carousel__slide4" class="carousel__navigation-button">Go to slide 4</a>
-                        </li>
-                    </ol>
-                </aside>
-            </section>
-        </div> -->
-
+        <section id="content_father" class="content-father">
+            <div class="content">
+                <div class="slides">
+                    <input type="radio" name="slide" id="slide1" checked>
+                    <input type="radio" name="slide" id="slide2">
+                    <input type="radio" name="slide" id="slide3">
+                    <input type="radio" name="slide" id="slide4">
+                    <input type="radio" name="slide" id="slide5">
+                    <input type="radio" name="slide" id="slide6">
+                    <input type="radio" name="slide" id="slide7">
+    
+                    <!-- voto -->
+                    <div class="slide s1" id="slide1">
+                        <img src="imgs/times/astralis.jpg" alt="">
+                        <h3>Astralis</h3>
+                        <p> A "Era Astralis" teve início, de fato, apenas no ano de 2018.
+                            Formado por Nicolai "dev1ce", Peter "dupreeh", Andreas "Xyp9x", Lucas "gla1ve" e Emil "Magisk",
+                            o time é apontado como o melhor da história do Counter-Strike.
+                            A equipe venceu praticamente tudo que disputou, dentre os títulos, destaque vai para 4 majors
+                            seguidos.
+                        </p>
+                    </div>
+                    <!-- lei -->
+                    <div class="slide">
+                        <img src="imgs/times/sk-gaming.jpeg" alt="">
+                        <h3>SK Gaming</h3>
+                        <p>Apesar da má fase vivida pelo Counter-Strike brasileiro, o jogo da Valve já foi motivo de orgulho
+                            para
+                            alguns torcedores.
+                            Até então um dos últimos suspiros do Brasil no cenário competitivo, o time de Gabriel "FalleN",
+                            Marcelo
+                            "coldzera",
+                            Fernando "fer", Epitácio "TACO" e João "felps" (Ricardo "boltz") viveu um ano de 2017
+                            inesquecível.</p>
+                    </div>
+                    <!-- lema -->
+                    <div class="slide">
+                        <img src="imgs/times/luminosity.jpg" alt="">
+                        <h3>Luminosity</h3>
+                        <p>A lineup que colocou o Brasil no mapa mundial do CS:GO, composta por Fallen, Fer, Coldzera, TACO
+                            e fnx   
+                            fez<br> história em 2016,
+                            quando conquistou os dois Majors conquistados naquela temporada: a MLG Columbus 2016,<br> com a
+                            camisa da
+                            Luminosity Gaming,
+                            e ESL One Cologne 2016, já com a camisa da SK Gaming.<br> Além do bicampeonato mundial, o quinteto
+                            brasileiro ainda conquistou
+                            naquela temporada as finais da ESL Pro League Season 3, ainda com a camisa da Luminosity.</p>
+                    </div>
+                    <!-- alvo -->
+                    <div class="slide">
+                        <img src="imgs/times/NAVI.jpg" alt="">
+                        <h3>NAVI</h3>
+                        <p>Apesar de estar em alta novamente com Oleksandr "s1mple" e companhia, a Natus Vincere possui uma
+                            trajetória muito mais antiga
+                            porém no ano de 2021 o time conquistou absolutamente todos os campeonatos em LAN, inclusive o
+                            Major.
+                            A equipe é formada por Denis "Electronic" Sharipov, Kirill "Boombl4" Mikhailov, Ilya "Perfecto"
+                            Zalutskiy, Valerii "B1t" Vakhovskyi e a lenda,
+                            Oleksandr "S1mple" Kostyliev.
+                        </p>
+                    </div>
+                    <!-- objetivo -->
+                    <div class="slide">
+                        <img src="imgs/times/MIBR.jpg" alt="">
+                        <h3>MIBR</h3>
+                        <p>Apesar das diversas formações diferentes, a MIBR dos anos 2007 e 2008 foi um dos principais
+                            motivos de
+                            orgulho para a geração
+                            que cresceu tendo acesso ao jogo apenas em lan houses. Lincoln "fnx", Renato "nak", Raphael
+                            "cogu",
+                            Carlos "KIKO", Olavo "cky", Bruno "bit", Wellington "ton", Thiago "btt"
+                            são apenas alguns jogadores que tiveram a passagem pela MIBR marcadas na história após
+                            conquistarem
+                            alguns dos principais torneios daquela época.</p>
+                    </div>
+                    <!-- fidelidade a biliba -->
+                     <div class="slide">
+                        <img src="imgs/times/cloud9.jpg" alt="">
+                        <h3>Cloud9</h3>
+                        <p>A presença da Cloud9 nessa lista se dá muito mais pela importância e simbolismo do maior título
+                            conquistado pela organização do que por ela ter,
+                            de fato, sido dominante no CS:GO. A lineup formada por Tarik, Stewie2k, RUSH, Skadoodle e
+                            Autimatic
+                            nunca foi um time extremamente regular,
+                            mesmo em seu auge, mas conquistou janeiro de 2018 a ELEAGUE Major Boston, primeiro, e até hoje
+                            único,
+                            título mundial de CS:GO conquistado por
+                            uma lineup composta apenas por jogadores da América do Norte.</p>
+                    </div>
+                    <!-- hino -->
+                    <div class="slide">
+                        <img src="imgs/times/virtuspro.jpg" alt="">
+                        <h3>Virtus Pro</h3>
+                        <p>Um dos times mais carismáticos e queridos de CS:GO de todos os tempos é também um dos melhores
+                            que já
+                            passaram pelo FPS da Valve.
+                            A lineup polonesa da Virtus Pro, formada por TaZ, NEO, PashaBiceps, Snax e Byali encantou o
+                            mundo
+                            encantou o mundo no seu auge.
+                            Em 2014, ano que a equipe desabrochou para o mundo, a VP faturou o título da ESL One Major
+                            Katowice 2014
+                            desbancando a poderosa
+                            Ninjas in Pyjamas de F0rest e Get_Right na grande decisão.
+                        </p>
+                    </div>
+                    
+    
+                    <div class="navigation">
+                        <label class="bar" for="slide1" title="Astralis"></label>
+                        <label class="bar" for="slide2" title="SK Gaming"></label>
+                        <label class="bar" for="slide3" title="Luminosity"></label>
+                        <label class="bar" for="slide4" title="NAVI"></label>
+                        <label class="bar" for="slide5" title="MIBR"></label>
+                        <label class="bar" for="slide6" title="Cloud9"></label>
+                        <label class="bar" for="slide7" title="Virtus Pro"></label>
+                        
+                    </div>
+                </div>
+            </div>
+        </section>
 
     </main>
 
