@@ -10,6 +10,7 @@
     <script src="./js/funcoes.js"></script>
     <link rel="icon" href="./assets/img/agnusDei.png">
     <link rel="stylesheet" href="./css/cabecalho_rodape.css">
+    <link rel="stylesheet" href="./css/cadastro_login.css">
     <link rel="stylesheet" href="./css/root_reset.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link
@@ -23,11 +24,11 @@
         <div class="container">
             <img class="imgCabecalho" src="./assets/img/agnusDei.png">
             <ul class="navbar">
-                <li class="agora">
-                    <a href="#">HOME</a>
+                <li>
+                    <a href="index.html">HOME</a>
                 </li>
                 <li>
-                    <a href="#">SOBRE</a>
+                    <a href="sobre.html">SOBRE</a>
                 </li>
                 <li>
                     <a href="#">MANUAIS</a>
@@ -36,7 +37,7 @@
                 <li>
                     <a href="./login.html">ENTRAR</a>
                 </li>
-                <li>
+                <li class="agora">
                     <a href="./cadastro.html">CADASTRO</a>
                 </li>
             </ul>
@@ -44,8 +45,7 @@
         </div>
     </header>
 
-
-    <div class="banner ">
+    <main class="banner ">
         <div class="alerta_erro">
             <div class="card_erro" id="cardErro">
                 <span id="mensagem_erro"></span>
@@ -53,14 +53,8 @@
         </div>
         <div class="container tamanho-conteudo">
             <div class="card medio">
-                <h2>Bem-vindo!</h2>
+                <h2 class="titulo">Bem-vindo!</h2>
                 <div class="formulario">
-
-                    <!--
-                         Para inserir mais um campo, copie uma das inputs abaixo.
-                         Assim que inserir vá para o script abaixo.
-                     -->
-
                     <span class="tipo_campo">Nome:</span>
                     <input id="nome_input" type="text" placeholder="Seu nome">
 
@@ -85,8 +79,8 @@
                 </div>
             </div>
         </div>
-    </div>
-
+    
+    </main>
     <footer>
         <div class="footer footer_um">
             <div class="container">
