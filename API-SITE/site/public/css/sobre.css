@@ -1,0 +1,30 @@
+main{
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+}
+
+h2{
+    margin: 20px;
+}
+
+.conteudo{
+  justify-content: space-around;
+  display: flex;
+  margin-bottom: 50px;
+}
+
+
+.tamanho-conteudo {
+    /* position: relative; */
+    justify-content: center;
+    width: 70%;
+    height: 200px;
+    border-radius: 20px;
+    margin: 20px 0px;
+    padding: 40px;
+    box-sizing: border-box;
+    background: #ecf0f3;
+    box-shadow: 14px 14px 20px #cbced1, -14px -14px 20px white;
+    align-items: center;
+  }
