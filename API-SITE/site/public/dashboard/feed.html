@@ -55,10 +55,9 @@
             <h3>Olá, <span id="b_usuario">usuário</span>!</h3>
         </div>
         <div class="avisos">
-            <div class="container">
+            <div class="container muralPub">
                 <div class="div-form tamanho-conteudo">
-                    <h1
-                    >Publicar um aviso</h1>
+                    <h1>Publicar um aviso</h1>
                     <form id="form_postagem" method="post" onsubmit="return publicar()">
                         <label>
                             Título:
@@ -69,23 +68,22 @@
                         <label>
                             Descrição (máximo de 250 caracteres):
                             <br>
-                            <textarea name="descricao" 
-                            id="textarea_descricao"
-                            maxlength="250" rows="5" onchange="tamanhoText()"></textarea>
-                            
+                            <textarea name="descricao" id="textarea_descricao" maxlength="250" rows="5"
+                                onchange="tamanhoText()"></textarea>
+
                         </label>
                         <br>
                         <button>Enviar</button>
                     </form>
                 </div>
-                <!-- <div>
+                <div  class="mural">
 
-                        <h1>Mural de Avisos</h1>
-                        <div class="div-results">
-                            <div id="feed_container" class="feed-container">
-                            </div>
+                    <h1 >Mural de Avisos</h1>
+                    <div class="div-results">
+                        <div id="feed_container" class="feed-container">
                         </div>
-                    </div> -->
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -140,6 +138,7 @@
 </html>
 
 <script>
+    atualizarFeed();
 
     b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
 
@@ -167,7 +166,7 @@
 
             if (resposta.ok) {
                 window.alert("Post realizado com sucesso pelo usuario de ID: " + idUsuario + "!");
-                window.location = "/dashboard/mural.html";
+                // window.location = "/dashboard/mural.html";
                 limparFormulario();
                 finalizarAguardar();
             } else if (resposta.status == 404) {
@@ -245,7 +244,7 @@
                         var btnDeletar = document.createElement("button");
 
 
-                        spanID.innerHTML = "ID: <b>" + publicacao.idAviso + "</b>";
+                        spanID.innerHTML = "ID: <b>" + publicacao.idPublicacao + "</b>";
                         spanTitulo.innerHTML = "Título: <b>" + publicacao.titulo + "</b>";
                         spanNome.innerHTML = "Autor: <b>" + publicacao.nome + "</b>";
                         divDescricao.innerHTML = "Descrição: <b>" + publicacao.descricao + "</b>";
@@ -253,7 +252,7 @@
                         btnDeletar.innerHTML = "Deletar";
 
                         divPublicacao.className = "publicacao";
-                        spanTitulo.id = "inputNumero" + publicacao.idAviso;
+                        spanTitulo.id = "inputNumero" + publicacao.idPublicacao;
                         spanNome.className = "publicacao-nome";
                         spanTitulo.className = "publicacao-titulo";
                         divDescricao.className = "publicacao-descricao";
@@ -261,12 +260,12 @@
                         divButtons.className = "div-buttons"
 
                         btnEditar.className = "publicacao-btn-editar"
-                        btnEditar.id = "btnEditar" + publicacao.idAviso;
-                        btnEditar.setAttribute("onclick", `editar(${publicacao.idAviso})`);
+                        btnEditar.id = "btnEditar" + publicacao.idPublicacao;
+                        btnEditar.setAttribute("onclick", `editar(${publicacao.idPublicacao})`);
 
                         btnDeletar.className = "publicacao-btn-editar"
-                        btnDeletar.id = "btnDeletar" + publicacao.idAviso;
-                        btnDeletar.setAttribute("onclick", `deletar(${publicacao.idAviso})`);
+                        btnDeletar.id = "btnDeletar" + publicacao.idPublicacao;
+                        btnDeletar.setAttribute("onclick", `deletar(${publicacao.idPublicacao})`);
 
                         divPublicacao.appendChild(spanID);
                         divPublicacao.appendChild(spanNome);

@@ -55,7 +55,7 @@ label, input, button, textarea {
     justify-content: center;
   }
 
-  .tamanho-conteudo {
+  .tamanho-conteudo{
     margin: 20px 0;
     justify-content: center;
     width: 350px;
@@ -65,6 +65,33 @@ label, input, button, textarea {
     box-sizing: border-box;
     background: #ecf0f3;
     box-shadow: 14px 14px 20px #cbced1, -14px -14px 20px white;
+  }
+
+  .publicacao{
+    margin: 20px 0;
+    justify-content: center;
+    width: 500px;
+    height: 250px;
+    border-radius: 20px;
+    padding: 40px;
+    box-sizing: border-box;
+    background: #ecf0f3;
+    box-shadow: 14px 14px 20px #cbced1, -14px -14px 20px white;
+  }
+
+  .muralPub{
+    justify-content: space-between;
+  }
+
+  .mural{
+    text-align: center;
+  }
+  .div-buttons{
+    display: flex;
+  }
+
+  .publicacao-btn-editar{
+    margin: 15px 5px 0px 5px;
   }
 
   

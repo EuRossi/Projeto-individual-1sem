@@ -19,7 +19,7 @@ create table publicacao(
     foreign key (fkUsuario) references usuario(idUsuario),
     primary key (idPublicacao, fkUsuario),
     titulo varchar (45) not null,
-    descricao varchar (180) not null,
+    descricao varchar (250) not null,
     dtpub datetime default current_timestamp,
     dtalteracao datetime    
     );
