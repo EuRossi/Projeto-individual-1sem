@@ -52,3 +52,18 @@ function fecharModal() {
     divModal.style.display = "none";
 }
 
+//adm
+function adm() {
+
+    if (sessionStorage.Tp_Usuario == 'adm') {
+        cabecalho_adm.style.display = 'block'
+    } else {
+        cabecalho_adm.style.display = 'none'
+
+    }
+}
+
+
+
+
+

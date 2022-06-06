@@ -41,9 +41,9 @@
                 <li class="agora">
                     <a href="feed.html">FEED</a>
                 </li>
-                <!-- <li>
-                        <a href="../cadastro.html">CADASTRO</a>
-                    </li> -->
+                <li id="cabecalho_adm" style="display: none;">
+                        <a href="dashboard.html">DASH</a>
+                    </li>
                 <li>
                     <a class="btn-logout" onclick="limparSessao()">SAIR</a>
                 </li>
@@ -139,6 +139,7 @@
 </html>
 
 <script>
+    adm();
     
 
     b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
@@ -305,4 +306,5 @@
         return false;
     }
 
+    
 </script>

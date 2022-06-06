@@ -8,8 +8,14 @@ create table usuario(
     email varchar(45) not null,
     senha varchar (20) not null,
     tpUsuario char(3) not null,
-    constraint ckTpUsu check (tpUsuario = 'adm' or tpUsuario = 'usu') 
+    constraint ckTpUsu check (tpUsuario = 'adm' or tpUsuario = 'usu'),
+    desbravador char(3) not null,
+    constraint cktDbv check (desbravador = 'sim' or desbravador = 'não'),
+    nomeClube varchar(40),
+    classeAtual varchar(40)
     );
+    
+    select * from usuario;
     
 create table publicacao(
 	idPublicacao int auto_increment,
@@ -36,6 +42,9 @@ create table  comentario(
     dtcometario datetime default current_timestamp,
     dtalteracao datetime
     );
+    
+    select * from usuario;
+    
 	
     
 

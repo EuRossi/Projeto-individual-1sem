@@ -69,6 +69,19 @@
 
                     <span class="tipo_campo">Confirmação da Senha:</span>
                     <input id="confirmacao_senha_input" type="password" placeholder="******">
+                    
+                    <span class="tipo_campo">Você é um desbravador</span>
+                    <select id="desbravador_input">
+                        <option value="selecione">-- SELECIONE --</option>
+                        <option value="sim">Sou Desbravador</option>
+                        <option value="nao">Não Sou Desbravador</option>
+                    </select>
+                    
+                    <span class="tipo_campo">Clube:</span>
+                    <input id="nome_clube_input" type="text" placeholder="Nome do seu clube">
+                    
+                    <span class="tipo_campo">Ultima classe concluida</span>
+                    <input id="ultima_classe_input" type="text" placeholder="Ultima classe concluida?">
 
                     <button class="btn" onclick="cadastrar()">Cadastrar</button>
 
@@ -115,14 +128,16 @@
 <script>
     function cadastrar() {
         aguardar();
-
         var nomeVar = nome_input.value;
         var emailVar = email_input.value;
         var senhaVar = senha_input.value;
         var confirmacaoSenhaVar = confirmacao_senha_input.value;
-        var tpUsuarioVar = "adm";
-
-        if (nomeVar == "" || emailVar == "" || senhaVar == "" || confirmacaoSenhaVar == "") {
+        var tpUsuarioVar = "usu";
+        var desbravadorVar = desbravador_input.value;
+        var nomeClubeVar = nome_clube_input.value;
+        var ultimaClasseVar = ultima_classe_input.value;
+        
+        if (nomeVar == "" || emailVar == "" || senhaVar == "" || confirmacaoSenhaVar == "" || desbravadorVar == "") {
             cardErro.style.display = "block"
             mensagem_erro.innerHTML = "(Mensagem de erro para todos os campos em branco)";
 
@@ -143,7 +158,10 @@
                 nomeServer: nomeVar,
                 emailServer: emailVar,
                 senhaServer: senhaVar,
-                tpUsuarioServer: tpUsuarioVar
+                tpUsuarioServer: tpUsuarioVar,
+                desbravadorServer : desbravadorVar,
+                nomeClubeServer : nomeClubeVar ,
+                ultimaClasseServer : ultimaClasseVar 
             })
         }).then(function (resposta) {
 

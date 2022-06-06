@@ -8,10 +8,14 @@ create table usuario(
     email varchar(45) not null,
     senha varchar (20) not null,
     tpUsuario char(3) not null,
-    constraint ckTpUsu check (tpUsuario = 'adm' or tpUsuario = 'usu') 
+    constraint ckTpUsu check (tpUsuario = 'adm' or tpUsuario = 'usu'),
+    -- verificando se é dbv ou não
+    desbravador char(3), 
+    constraint ckDbv check (desbravador = 'sim' or desbravador = 'nao'),
+    nomeClube varchar(20),
+    classeAtual varchar(20)    
     );
     
-    select * from usuario;
     
 create table publicacao(
 	idPublicacao int auto_increment,
@@ -23,7 +27,6 @@ create table publicacao(
     dtpub datetime default current_timestamp,
     dtalteracao datetime    
     );
-    
     
 create table  comentario(
 	idComentario int auto_increment,

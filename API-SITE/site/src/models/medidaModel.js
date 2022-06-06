@@ -1,5 +1,13 @@
 var database = require("../database/config");
 
+function listarDbv() {
+
+    instrucaoSql = `select desbravador, nomeClube, classeAtual from usuario;`;
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
 function buscarUltimasMedidas(idAquario, limite_linhas) {
 
     instrucaoSql = ''
@@ -64,5 +72,6 @@ function buscarMedidasEmTempoReal(idAquario) {
 
 module.exports = {
     buscarUltimasMedidas,
-    buscarMedidasEmTempoReal
+    buscarMedidasEmTempoReal,
+    listarDbv
 }

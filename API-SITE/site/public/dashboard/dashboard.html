@@ -6,10 +6,12 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AcquaTec | Dashboards</title>
+    <title>Dashboards</title>
 
-    <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="dashboards.css">
+    <link rel="icon" href="../assets/img/agnusDei.png">
+    <link rel="stylesheet" href="../css/cabecalho_rodape.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="stylesheet" href="../css/root_reset.css">
     <script src="../js/funcoes.js"></script>
 
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -18,51 +20,49 @@
         rel="stylesheet">
 
     <!-- scripts do Chart.js -->
-    <script type="text/javascript" src="https://www.chartjs.org/dist/2.8.0/Chart.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- <script type="text/javascript" src="https://www.chartjs.org/dist/2.8.0/Chart.min.js"></script> -->
 
 </head>
 
 <body onload="validarSessao(), atualizarFeed()">
-
-    <div class="janela">
-        <div class="header-left">
-            <h1>AcquaTec</h1>
-
-            <div class="hello">
-                <h3>Olá, <span id="b_usuario">usuário</span>!</h3>
-            </div>
-
-            <div class="btn-nav-white">
-                <a href="./cards.html">
-                    <h3>Aquários</h3>
-                </a>
-            </div>
-
-            <div class="btn-nav">
-
-                <h3>Gráficos</h3>
-
-            </div>
-
-            <div class="btn-nav-white">
-                <a href="./mural.html">
-                    <h3>Mural de Avisos</h3>
-                </a>
-            </div>
-
-            <div class="btn-logout" onclick="limparSessao()">
-                <h3>Sair</h3>
-            </div>
+    <header class="header">
+        <div class="container">
+            <img class="imgCabecalho" src="../assets/img/agnusDei.png">
+            <ul class="navbar">
+                <li>
+                    <a href="../index.html">HOME</a>
+                </li>
+                <li>
+                    <a href="../sobre_DBV.html">SOBRE</a>
+                </li>
+                <li>
+                    <a href="sobre_DEV.html">DEV</a>
+                </li>
+                <li>
+                    <a href="#">MANUAIS</a>
+                </li>
+                <li>|</li>
+                <li>
+                    <a href="feed.html">FEED</a>
+                </li>
+                <li class="agora" id="cabecalho_adm" style="display: none;">
+                    <a href="dashboard.html">DASH</a>
+                </li>
+                <li>
+                    <a class="btn-logout" onclick="limparSessao()">SAIR</a>
+                </li>
+            </ul>
 
         </div>
+    </header>
+
+    <div>
 
         <div class="dash">
             <div class="btns-dash">
                 <!-- O gráfico é chamado de acordo com o id (fk_aquario) do banco  -->
                 <button class="btn-chart btn-pink" onclick="obterDadosGrafico(1)">Aquario 1</button>
-                <button class="btn-chart btn-white" onclick="obterDadosGrafico(2)">Aquario 2</button>
-                <button class="btn-chart btn-white" onclick="obterDadosGrafico(3)">Aquario 3</button>
-                <button class="btn-chart btn-white" onclick="obterDadosGrafico(4)">Aquario 4</button>
             </div>
             <div>
                 <h3 class="tituloGraficos">
@@ -70,10 +70,36 @@
                 </h3>
             </div>
             <div class="graph">
-                <canvas id="canvas_grafico"></canvas>
+                <canvas id="myChart"></canvas>
             </div>
         </div>
     </div>
+
+    <footer>
+        <div class="footer footer_um">
+            <div class="container">
+                <img class="imgFooter" src="../assets/img/bandeiraRossi.png">
+                <ul class="navbar navbarfooter">
+                    <li>
+                        <a href="../sobre_DBV.html">SOBRE</a>
+                    </li>
+                    <li>
+                        <a href="#">MANUAIS</a>
+                    </li>
+                    <li>
+                        <a href="../sobre_DEV.html">DESENVOLVEDOR</a>
+                    </li>
+                </ul>
+                <img class="imgFooter" src="../assets/img/leão.png">
+            </div>
+        </div>
+        <div class="footer footer_dois">
+            <div class="container">
+                <h4>Feito com amor pelo aluno Rossi da &hearts;SPTech &copy; 2022</h4>
+                <h6>v1.0.0</h6>
+            </div>
+        </div>
+    </footer>
 
 
 </body>
@@ -81,19 +107,18 @@
 </html>
 
 <script>
+    adm();
+    obterDadosGrafico();
 
-    let proximaAtualizacao;
+    var lista = [];
 
-    window.onload = obterDadosGrafico(1);
+    // b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
 
-    b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
 
-    verificar_autenticacao();
-
-    function alterarTitulo(idAquario) {
-        var tituloAquario = document.getElementById("tituloAquario")
-        tituloAquario.innerHTML = "Últimas medidas de Temperatura e Umidade do <span style='color: #e6005a'>Aquário " + idAquario + "</span>"
-    }
+    // function alterarTitulo(idAquario) {
+    //     var tituloAquario = document.getElementById("tituloAquario")
+    //     tituloAquario.innerHTML = "Últimas medidas de Temperatura e Umidade do <span style='color: #e6005a'>Aquário " + idAquario + "</span>"
+    // }
 
     // O gráfico é construído com três funções:
     // 1. obterDadosGrafico -> Traz dados do Banco de Dados para montar o gráfico da primeira vez
@@ -106,151 +131,173 @@
 
     //     Se quiser alterar a busca, ajuste as regras de negócio em src/controllers
     //     Para ajustar o "select", ajuste o comando sql em src/models
-    function obterDadosGrafico(idAquario) {
-        alterarTitulo(idAquario)
+    function obterDadosGrafico() {
+        fetch("/medidas/listarDbv", {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        }).then(function (resposta) {
+            console.log("ESTOU NO THEN DO listar()!")
 
-        if (proximaAtualizacao != undefined) {
-            clearTimeout(proximaAtualizacao);
-        }
+            if (resposta.ok) {
+                console.log(resposta);
+                resposta.json().then(json => {
+                    // console.log(json);
+                    // console.log(json.length)
+                    // console.log(JSON.stringify(json));
+                    lista = [];
 
-        fetch(`/medidas/ultimas/${idAquario}`, { cache: 'no-store' }).then(function (response) {
-            if (response.ok) {
-                response.json().then(function (resposta) {
-                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-                    resposta.reverse();
+                    for (let i = 0; i < json.length; i++) {
+                        lista.push(json[i]);
+                        // console.log(`cadastro ${i}`)
+                        // o nome de cada botao retorna assim
+                        // console.log(lista[i])
 
-                    plotarGrafico(resposta, idAquario);
+                    }
+                    listas();
                 });
             } else {
-                console.error('Nenhum dado encontrado ou erro na API');
+                console.log("Houve um erro ao tentar realizar o listar!");
+                resposta.text().then(texto => {
+                    console.error(texto);
+                });
             }
+
+        }).catch(function (erro) {
+            console.log(erro);
         })
-            .catch(function (error) {
-                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
-            });
+
+        return false;
+    }
+
+    var dbvSim = 0
+    var dbvNao = 0
+    function listas() {
+            for (let i = 0; i < lista.length; i++) {
+            if(lista[i].desbravador == 'sim'){
+                dbvSim++
+            }else{
+                dbvNao++
+            }
+        }
+        plotarGrafico();
     }
 
     // Esta função *plotarGrafico* usa os dados capturados na função anterior para criar o gráfico
     // Configura o gráfico (cores, tipo, etc), materializa-o na página e, 
     // A função *plotarGrafico* também invoca a função *atualizarGrafico*
-    function plotarGrafico(resposta, idAquario) {
+    function plotarGrafico() {
         console.log('iniciando plotagem do gráfico...');
+        // https://www.chartjs.org/docs/latest/charts/doughnut.html#pie
 
-        var dados = {
-            labels: [],
-            datasets: [
-                {
-                    yAxisID: 'y-umidade',
-                    label: 'Umidade',
-                    borderColor: '#32B9CD',
-                    backgroundColor: '#32b9cd8f',
-                    fill: true,
-                    data: []
-                },
-                {
-                    yAxisID: 'y-temperatura',
-                    label: 'Temperatura',
-                    borderColor: '#FFF',
-                    backgroundColor: '#32b9cd8f',
-                    fill: true,
-                    data: []
-                }
-            ]
+        const labels = [
+            'Desbravadores',
+            'não desbravadores',
+        ];
+
+        const data = {
+            labels: labels,
+            datasets: [{
+                label: 'My First Dataset',
+                data: [dbvSim, dbvNao],
+                backgroundColor: [
+                    'rgb(255, 99, 132)',
+                    'rgb(54, 162, 235)'
+                ],
+                hoverOffset: 4
+            }]
         };
 
-        for (i = 0; i < resposta.length; i++) {
-            var registro = resposta[i];
-            dados.labels.push(registro.momento_grafico);
-            dados.datasets[0].data.push(registro.umidade);
-            dados.datasets[1].data.push(registro.temperatura);
-        }
+        const config = {
+            type: 'pie',
+            data: data,
+            options: {}
+        };
 
-        console.log(JSON.stringify(dados));
+        const myChart = new Chart(
+            document.getElementById('myChart'),
+            config
+        );
 
-        var ctx = canvas_grafico.getContext('2d');
-        window.grafico_linha = Chart.Line(ctx, {
-            data: dados,
-            options: {
-                responsive: true,
-                animation: { duration: 500 },
-                hoverMode: 'index',
-                stacked: false,
-                title: {
-                    display: false,
-                    text: 'Dados capturados'
-                },
-                scales: {
-                    yAxes: [{
-                        type: 'linear',
-                        display: true,
-                        position: 'left',
-                        id: 'y-temperatura',
-                        ticks: {
-                            beginAtZero: true,
-                            max: 100,
-                            min: 0
-                        }
-                    }, {
-                        type: 'linear',
-                        display: false,
-                        position: 'right',
-                        id: 'y-umidade',
-                        ticks: {
-                            beginAtZero: true,
-                            max: 100,
-                            min: 0
-                        },
 
-                        gridLines: {
-                            drawOnChartArea: false,
-                        },
-                    }],
-                }
-            }
-        });
 
-        setTimeout(() => atualizarGrafico(idAquario, dados), 2000);
+        //     var dados = {
+        //         labels: [],
+        //         datasets: [
+        //             {
+        //                 yAxisID: 'y-umidade',
+        //                 label: 'Umidade',
+        //                 borderColor: '#32B9CD',
+        //                 backgroundColor: '#32b9cd8f',
+        //                 fill: true,
+        //                 data: []
+        //             },
+        //             {
+        //                 yAxisID: 'y-temperatura',
+        //                 label: 'Temperatura',
+        //                 borderColor: '#FFF',
+        //                 backgroundColor: '#32b9cd8f',
+        //                 fill: true,
+        //                 data: []
+        //             }
+        //         ]
+        //     };
+
+        //     for (i = 0; i < resposta.length; i++) {
+        //         var registro = resposta[i];
+        //         dados.labels.push(registro.momento_grafico);
+        //         dados.datasets[0].data.push(registro.umidade);
+        //         dados.datasets[1].data.push(registro.temperatura);
+        //     }
+
+        //     console.log(JSON.stringify(dados));
+
+        //     var ctx = canvas_grafico.getContext('2d');
+        //     window.grafico_linha = Chart.Line(ctx, {
+        //         data: dados,
+        //         options: {
+        //             responsive: true,
+        //             animation: { duration: 500 },
+        //             hoverMode: 'index',
+        //             stacked: false,
+        //             title: {
+        //                 display: false,
+        //                 text: 'Dados capturados'
+        //             },
+        //             scales: {
+        //                 yAxes: [{
+        //                     type: 'linear',
+        //                     display: true,
+        //                     position: 'left',
+        //                     id: 'y-temperatura',
+        //                     ticks: {
+        //                         beginAtZero: true,
+        //                         max: 100,
+        //                         min: 0
+        //                     }
+        //                 }, {
+        //                     type: 'linear',
+        //                     display: false,
+        //                     position: 'right',
+        //                     id: 'y-umidade',
+        //                     ticks: {
+        //                         beginAtZero: true,
+        //                         max: 100,
+        //                         min: 0
+        //                     },
+
+        //                     gridLines: {
+        //                         drawOnChartArea: false,
+        //                     },
+        //                 }],
+        //             }
+        //         }
+        //     });
+
+        //     setTimeout(() => atualizarGrafico(idAquario, dados), 2000);
     }
 
 
-    // Esta função *atualizarGrafico* atualiza o gráfico que foi renderizado na página,
-    // buscando a última medida inserida em tabela contendo as capturas, 
 
-    //     Se quiser alterar a busca, ajuste as regras de negócio em src/controllers
-    //     Para ajustar o "select", ajuste o comando sql em src/models
-    function atualizarGrafico(idAquario, dados) {
-
-        fetch(`/medidas/tempo-real/${idAquario}`, { cache: 'no-store' }).then(function (response) {
-            if (response.ok) {
-                response.json().then(function (novoRegistro) {
-
-                    console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
-                    console.log(`Dados atuais do gráfico: ${dados}`);
-
-                    // tirando e colocando valores no gráfico
-                    dados.labels.shift(); // apagar o primeiro
-                    dados.labels.push(novoRegistro[0].momento_grafico); // incluir um novo momento
-                    
-                    dados.datasets[0].data.shift();  // apagar o primeiro de umidade
-                    dados.datasets[0].data.push(novoRegistro[0].umidade); // incluir uma nova medida de umidade
-                    
-                    dados.datasets[1].data.shift();  // apagar o primeiro de temperatura
-                    dados.datasets[1].data.push(novoRegistro[0].temperatura); // incluir uma nova medida de temperatura
-
-                    window.grafico_linha.update();
-
-                    // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-                    proximaAtualizacao = setTimeout(() => atualizarGrafico(idAquario, dados), 2000);
-                });
-            } else {
-                console.error('Nenhum dado encontrado ou erro na API');
-                // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-                proximaAtualizacao = setTimeout(() => atualizarGrafico(idAquario, dados), 2000);
-            }
-        })
-            .catch(function (error) {
-                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
-            });
-
-    }
 </script>
