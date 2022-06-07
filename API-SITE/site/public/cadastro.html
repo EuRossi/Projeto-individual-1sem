@@ -58,37 +58,42 @@
             <div class="card medio">
                 <h2 class="titulo">Bem-vindo!</h2>
                 <div class="formulario">
-                    <span class="tipo_campo">Nome:</span>
-                    <input id="nome_input" type="text" placeholder="Seu nome">
+                    <div id="form1">
 
-                    <span class="tipo_campo">E-mail:</span>
-                    <input id="email_input" type="text" placeholder="meuemail@provedor.com">
-
-                    <span class="tipo_campo">Senha:</span>
-                    <input id="senha_input" type="password" placeholder="******">
-
-                    <span class="tipo_campo">Confirmação da Senha:</span>
-                    <input id="confirmacao_senha_input" type="password" placeholder="******">
-                    
-                    <span class="tipo_campo">Você é um desbravador</span>
-                    <select id="desbravador_input">
-                        <option value="selecione">-- SELECIONE --</option>
+                        <span class="tipo_campo">Nome:</span>
+                        <input id="nome_input" type="text" placeholder="Seu nome">
+                        
+                        <span class="tipo_campo">E-mail:</span>
+                        <input id="email_input" type="text" placeholder="meuemail@provedor.com">
+                        
+                        <span class="tipo_campo">Senha:</span>
+                        <input id="senha_input" type="password" placeholder="******">
+                        
+                        <span class="tipo_campo">Confirmação da Senha:</span>
+                        <input id="confirmacao_senha_input" type="password" placeholder="******">
+                        
+                        <span class="tipo_campo">Você é um desbravador</span>
+                        <select id="desbravador_input">
+                            <option value="selecione">-- SELECIONE --</option>
                         <option value="sim">Sou Desbravador</option>
                         <option value="nao">Não Sou Desbravador</option>
                     </select>
-                    
+                    <button class="btn" onclick="prosseguir()">Prosseguir</button>
+                </div>
+                <div id="form2" style="display: none">
                     <span class="tipo_campo">Clube:</span>
                     <input id="nome_clube_input" type="text" placeholder="Nome do seu clube">
                     
                     <span class="tipo_campo">Ultima classe concluida</span>
                     <input id="ultima_classe_input" type="text" placeholder="Ultima classe concluida?">
-
+                    
                     <button class="btn" onclick="cadastrar()">Cadastrar</button>
-
+                    
                 </div>
                 <div id="div_aguardar" class="loading-div">
                     <img src="./assets/circle-loading.gif" id="loading-gif">
                 </div>
+            </div>
 
                 <div id="div_erros_login">
 
@@ -126,6 +131,16 @@
 </html>
 
 <script>
+    function prosseguir(){
+        if(desbravador_input.value == 'sim'){
+
+            form1.style.display = "none"
+            form2.style.display = "block"
+        }else{
+            cadastrar()
+        }
+    }
+
     function cadastrar() {
         aguardar();
         var nomeVar = nome_input.value;
@@ -141,6 +156,26 @@
             cardErro.style.display = "block"
             mensagem_erro.innerHTML = "(Mensagem de erro para todos os campos em branco)";
 
+            finalizarAguardar();
+            return false;
+        }
+        else {
+            setInterval(sumirMensagem, 5000)
+        }
+
+
+        if (emailVar.indexOf("@") == -1 || emailVar.indexOf(".com") == -1) {
+            cardErro.style.display = "block"
+            mensagem_erro.innerHTML = "Ops, e-mail inválido! Verifique e tente novamente.";
+            finalizarAguardar();
+            return false;
+        }
+        else {
+            setInterval(sumirMensagem, 5000)
+        }
+        if (senhaVar != confirmacaoSenhaVar) {
+            cardErro.style.display = "block"
+            mensagem_erro.innerHTML="As senhas inseridas devem ser iguais para prosseguir!";
             finalizarAguardar();
             return false;
         }

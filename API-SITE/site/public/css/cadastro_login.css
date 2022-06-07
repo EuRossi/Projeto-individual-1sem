@@ -8,7 +8,7 @@ input {
     position: relative;
     justify-content: center;
     width: 350px;
-    height: 500px;
+    height: auto;
     border-radius: 20px;
     padding: 40px;
     box-sizing: border-box;
@@ -53,7 +53,7 @@ input::placeholder {
   color: gray;
 }
 
-input {
+input , select{
   background: #ecf0f3;
   padding: 10px;
   padding-left: 20px;
