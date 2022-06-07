@@ -52,8 +52,22 @@ function fecharModal() {
     divModal.style.display = "none";
 }
 
-//adm
-function adm() {
+
+function logado(){
+    var email = sessionStorage.EMAIL_USUARIO;
+    var nome = sessionStorage.NOME_USUARIO;
+
+    if (email != null && nome != null) {
+        entrar_cabecalho.style.display = 'none'
+        cadastro_cabecalho.style.display = 'none'
+        feed_cabecalho.style.display = 'block'
+        sair_cabecalho.style.display = 'block'
+    } else {
+        entrar_cabecalho.style.display = 'block'
+        cadastro_cabecalho.style.display = 'block'
+        feed_cabecalho.style.display = 'none'
+        sair_cabecalho.style.display = 'none'
+    }
 
     if (sessionStorage.Tp_Usuario == 'adm') {
         cabecalho_adm.style.display = 'block'

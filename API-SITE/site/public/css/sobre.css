@@ -29,6 +29,20 @@ h2{
     align-items: center;
   }
 
+  .tamanho {
+    /* position: relative; */
+    justify-content: center;
+    width: 25%;
+    height: 150px;
+    border-radius: 20px;
+    margin: 15px 0px;
+    padding: 40px;
+    box-sizing: border-box;
+    background: #ecf0f3;
+    box-shadow: 14px 14px 20px #cbced1, -14px -14px 20px white;
+    align-items: center;
+  }
+
   .conteudo img{
     width: 225px;
     margin: 20px 15px;

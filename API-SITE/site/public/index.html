@@ -33,14 +33,23 @@
                     <a href="sobre_DEV.html">DEV</a>
                 </li>
                 <li>
-                    <a href="#">MANUAIS</a>
+                    <a href="manuais.html">MANUAIS</a>
                 </li>
                 <li>|</li>
-                <li>
-                    <a href="./login.html">ENTRAR</a>
+                <li id="entrar_cabecalho" style="display: block;">
+                    <a href="login.html">ENTRAR</a>
                 </li>
-                <li>
-                    <a href="./cadastro.html">CADASTRO</a>
+                <li id="cadastro_cabecalho" style="display: block;">
+                    <a href="cadastro.html">CADASTRO</a>
+                </li>
+                <li id="feed_cabecalho" style="display: none;">
+                    <a href="./dashboard/feed.html">FEED</a>
+                </li>
+                <li id="cabecalho_adm" style="display: none;">
+                    <a href="./dashboard/dashboard.html">DASH</a>
+                </li>
+                <li id="sair_cabecalho" style="display: none;">
+                    <a class="btn-logout" onclick="limparSessao()">SAIR</a>
                 </li>
             </ul>
 
@@ -182,3 +191,7 @@
 </body>
 
 </html>
+
+<script>
+    logado();
+</script>

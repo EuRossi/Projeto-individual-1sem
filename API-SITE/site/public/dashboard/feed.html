@@ -31,19 +31,25 @@
                     <a href="../sobre_DBV.html">SOBRE</a>
                 </li>
                 <li>
-                    <a href="sobre_DEV.html">DEV</a>
+                    <a href="../sobre_DEV.html">DEV</a>
                 </li>
                 <li>
-                    <a href="#">MANUAIS</a>
+                    <a href="../manuais.html">MANUAIS</a>
                 </li>
                 <li>|</li>
-                <li class="agora">
+                <li id="entrar_cabecalho" style="display: block;">
+                    <a href="./login.html">ENTRAR</a>
+                </li>
+                <li id="cadastro_cabecalho" style="display: block;">
+                    <a href="./cadastro.html">CADASTRO</a>
+                </li>
+                <li class="agora" id="feed_cabecalho" style="display: none;">
                     <a href="feed.html">FEED</a>
                 </li>
                 <li id="cabecalho_adm" style="display: none;">
-                        <a href="dashboard.html">DASH</a>
-                    </li>
-                <li>
+                    <a href="dashboard.html">DASH</a>
+                </li>
+                <li id="sair_cabecalho" style="display: none;">
                     <a class="btn-logout" onclick="limparSessao()">SAIR</a>
                 </li>
             </ul>
@@ -138,7 +144,7 @@
 </html>
 
 <script>
-    adm();
+    logado();
     
 
     b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
