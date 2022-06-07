@@ -28,3 +28,8 @@ h2{
     box-shadow: 14px 14px 20px #cbced1, -14px -14px 20px white;
     align-items: center;
   }
+
+  .conteudo img{
+    width: 225px;
+    margin: 20px 15px;
+  }
