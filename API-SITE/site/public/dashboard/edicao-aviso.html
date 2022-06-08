@@ -2,14 +2,15 @@
 <html lang="pt-br">
 
 <head>
-    <link rel="shortcut icon" href="../assets/icon/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="../assets/img/agnusDei.png" type="image/x-icon">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AcquaTec | Página Inicial</title>
+    <title> Alterar publicação</title>
 
-    <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="./dashboards.css">
+    <link rel="stylesheet" href="../css/cabecalho_rodape.css">
+    <link rel="stylesheet" href="../css/root_reset.css">
+    <link rel="stylesheet" href="../css/editar_post.css">
     <script src="../js/funcoes.js"></script>
 
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -18,43 +19,44 @@
         rel="stylesheet">
 </head>
 
-<body onload="validarSessao(), listarInfosDeUm()" style="background-color: #161618;">
-    <!-- <body onload="validarSessao()"> -->
-
-    <div class="janela">
-
-
-        <div class="header-left">
-
-            <h1>AcquaTec</h1>
-
-            <div class="hello">
-                <h3>Olá, <span id="b_usuario">usuário</span>!</h3>
+<!-- <body onload="validarSessao(), listarInfosDeUm()"> -->
+<body>
+        <header class="header">
+            <div class="container">
+                <img class="imgCabecalho" src="../assets/img/agnusDei.png">
+                <ul class="navbar">
+                    <li>
+                        <a href="../index.html">HOME</a>
+                    </li>
+                    <li>
+                        <a href="../sobre_DBV.html">SOBRE</a>
+                    </li>
+                    <li>
+                        <a href="../sobre_DEV.html">DEV</a>
+                    </li>
+                    <li>
+                        <a href="../manuais.html">MANUAIS</a>
+                    </li>
+                    <li>|</li>
+                    <li id="entrar_cabecalho" style="display: block;">
+                        <a href="../login.html">ENTRAR</a>
+                    </li>
+                    <li id="cadastro_cabecalho" style="display: block;">
+                        <a href="../cadastro.html">CADASTRO</a>
+                    </li>
+                    <li class="agora" id="feed_cabecalho" style="display: none;">
+                        <a href="feed.html">FEED</a>
+                    </li>
+                    <li id="cabecalho_adm" style="display: none;">
+                        <a href="dashboard.html">DASH</a>
+                    </li>
+                    <li id="sair_cabecalho" style="display: none;">
+                        <a class="btn-logout" onclick="limparSessao()">SAIR</a>
+                    </li>
+                </ul>
+    
             </div>
-
-            <div class="btn-nav-white">
-                <a href="cards.html">
-                    <h3>Aquários</h3>
-                </a>
-            </div>
-
-            <div class="btn-nav-white">
-                <a href="./dashboard.html">
-                    <h3>Gráficos</h3>
-                </a>
-            </div>
-
-            <div class="btn-nav-white">
-                <a href="./mural.html">
-                    <h3>Mural de Avisos</h3>
-                </a>
-            </div>
-
-            <div class="btn-logout" onclick="limparSessao()">
-                <h3>Sair</h3>
-            </div>
-
-        </div>
+        </header>
 
         <div class="dash-right">
 
@@ -67,6 +69,7 @@
                             <br>
                             <input id="input_id" maxlength="100" type="text" style="color: rgb(196, 196, 196)" disabled>
                         </label>
+                        
                         <label>
                             Autor:
                             <br>
@@ -77,7 +80,7 @@
                             Título:
                             <br>
                             <input id="input_titulo" maxlength="100" type="text" style="color: rgb(196, 196, 196)"
-                                disabled>
+                            disabled>
                         </label>
                         <br>
                         <label>
@@ -93,29 +96,58 @@
             </div>
         </div>
     </div>
+    <footer>
+        <div class="footer footer_um">
+            <div class="container">
+                <img class="imgFooter" src="../assets/img/bandeiraRossi.png">
+                <ul class="navbar navbarfooter">
+                    <li>
+                        <a href="../sobre_DBV.html">SOBRE</a>
+                    </li>
+                    <li>
+                        <a href="#">MANUAIS</a>
+                    </li>
+                    <li>
+                        <a href="../sobre_DEV.html">DESENVOLVEDOR</a>
+                    </li>
+                </ul>
+                <img class="imgFooter" src="../assets/img/leão.png">
+            </div>
+        </div>
+        <div class="footer footer_dois">
+            <div class="container">
+                <h4>Feito com amor pelo aluno Rossi da &hearts;SPTech &copy; 2022</h4>
+                <h6>v1.0.0</h6>
+            </div>
+        </div>
+    </footer>
 </body>
 
 </html>
 
 <script>
+    logado();
     function listarInfosDeUm() {
         console.log("Criar função de trazer informações de post escolhido");
     }
 
     function editar() {
-        fetch(`/avisos/editar/${sessionStorage.getItem("ID_POSTAGEM_EDITANDO")}`, {
+        var idPub = sessionStorage.ID_POSTAGEM_EDITANDO;
+        fetch(`/avisos/editar`, {
+            
             method: "PUT",
             headers: {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
-                descricao: textarea_descricao.value
+                idPublicacaoServer: idPub,
+                descricaoServer: textarea_descricao.value
             })
         }).then(function (resposta) {
 
             if (resposta.ok) {
                 window.alert("Post atualizado com sucesso pelo usuario de email: " + sessionStorage.getItem("EMAIL_USUARIO") + "!");
-                window.location = "/dashboard/mural.html"
+                window.location = "/dashboard/feed.html"
             } else if (resposta.status == 404) {
                 window.alert("Deu 404!");
             } else {

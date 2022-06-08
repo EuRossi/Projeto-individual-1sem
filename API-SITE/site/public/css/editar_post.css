@@ -1,0 +1,127 @@
+.dash-right{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.dash-right .avisos {
+    font-family: "Exo 2", sans-serif;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .dash-right .avisos .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 350px;
+    height: auto;
+    margin: 25px 0px;
+    /* justify-content: center; */
+    border-radius: 20px;
+    padding: 40px;
+    box-sizing: border-box;
+    background: #ecf0f3;
+    box-shadow: 14px 14px 20px #cbced1, -14px -14px 20px white;
+  }
+  
+  label, input, button {
+    display: block;
+    width: 100%;
+    padding: 0;
+    border: none;
+    outline: none;
+    box-sizing: border-box;
+  }
+  
+  label {
+    margin-bottom: 4px;
+  }
+  
+  label:nth-of-type(2) {
+    margin-top: 12px;
+  }
+  
+  input::placeholder {
+    color: gray;
+  }
+  
+  input , select{
+    background: #ecf0f3;
+    padding: 10px;
+    padding-left: 20px;
+    height: 50px;
+    font-size: 14px;
+    border-radius: 50px;
+    box-shadow: inset 6px 6px 6px #cbced1, inset -6px -6px 6px white;
+  }
+
+  textarea {
+    background: #ecf0f3;
+    overflow-y: hidden;
+    padding: 10px 30px;
+    font-size: 14px;
+    border-radius: 30px;
+    box-shadow: inset 6px 6px 6px #cbced1, inset -6px -6px 6px white;
+    resize: none;
+  }  
+  
+  .dash-right .avisos .div-form button {
+    cursor: pointer;
+    font-family: "Exo 2", sans-serif;
+    border: 0;
+    border-radius: 5px;
+    font-weight: 600;
+    font-size: 18px;
+    padding: 10px 15px;
+    color: white;
+    background-color: #e6005a;
+    width: 120px;
+  } */
+  
+  .publicacao-btn-editar {
+    cursor: pointer;
+    font-family: "Exo 2", sans-serif;
+    border: 0;
+    border-radius: 5px;
+    font-weight: 600;
+    font-size: 14px;
+    padding: 5px 8px;
+    color: white;
+    background-color: #e6005a;
+    width: 80px;
+  }
+  
+  .publicacao {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: stretch;
+    flex-direction: column;
+    justify-content: center;
+    align-items: stretch;
+    border-bottom: 3px solid #e6005a;
+    padding: 20px;
+  }
+  
+  .publicacao > *:not(:last-child) {
+    padding: 0 0 10px 0;
+  }
+  
+  .div-results {
+    width: 100%;
+  }
+  
+  .div-results .feed-container {
+    background-color: #212124;
+    border-radius: 5px;
+    margin-bottom: 80px;
+  }
+  
+  .div-buttons {
+    display: flex;
+    justify-content: flex-end;
+  }
+  
+  .div-buttons > * {
+    margin-left: 30px;
+  }
