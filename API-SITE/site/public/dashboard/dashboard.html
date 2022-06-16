@@ -62,19 +62,33 @@
         </div>
     </header>
 
-    <div class="dash ">
+    <main class="dash ">
+        <div class="container space">
 
-        <div class="card">
-            <div >
-                <h3 class="tituloGraficos">
-                    <span id="tituloAquario">DBVs X não DBVs </span>
-                </h3>
+            <div class="card">
+                <div>
+                    <h3 class="tituloGraficos">
+                        <span>DBVs X não DBVs </span>
+                    </h3>
+                </div>
+                <div class="graph">
+                    <canvas id="myChart"></canvas>
+                </div>
+
             </div>
-            <div class="graph">
-                <canvas id="myChart"></canvas>
+            <div class="card">
+                <div>
+                    <h3 class="tituloGraficos">
+                        <span>Ultima classe realizada </span>
+                    </h3>
+                </div>
+                <div class="graph">
+                    <canvas id="myChartDois"></canvas>
+                </div>
+
             </div>
         </div>
-    </div>
+    </main>
 
     <footer>
         <div class="footer footer_um">
@@ -112,8 +126,19 @@
     obterDadosGrafico();
 
     var lista = [];
+    //grafico um
     var dbvSim = 0;
     var dbvNao = 0;
+
+    //grafico dois
+    var lider = 0;
+    var agrupadas = 0;
+    var guia = 0;
+    var excursionista = 0;
+    var pioneiro = 0;
+    var pesquisador = 0;
+    var companheiro = 0;
+    var amigo = 0;
 
 
     // b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
@@ -158,11 +183,29 @@
     }
 
     function listas() {
-            for (let i = 0; i < lista.length; i++) {
-            if(lista[i].desbravador == 'sim'){
+        for (let i = 0; i < lista.length; i++) {
+            if (lista[i].desbravador == 'sim') {
                 dbvSim++
-            }else{
+            } else {
                 dbvNao++
+            }
+
+            if (lista[i].classeAtual == 'LIDER') {
+                lider++
+            } else if (lista[i].classeAtual == 'AGRUPADAS') {
+                agrupadas++
+            } else if (lista[i].classeAtual == 'GUIA') {
+                guia++
+            } else if (lista[i].classeAtual == 'EXCURSIONISTA') {
+                excursionista++
+            } else if (lista[i].classeAtual == 'PIONEIRO') {
+                pioneiro++
+            } else if (lista[i].classeAtual == 'PESQUISADOR') {
+                pesquisador++
+            } else if (lista[i].classeAtual == 'COMPANHEIRO') {
+                companheiro++
+            } else if (lista[i].classeAtual == 'AMIGO') {
+                amigo++
             }
         }
         plotarGrafico();
@@ -186,7 +229,7 @@
                 backgroundColor: [
                     'blue',
                     'red'
-                    
+
                 ],
                 hoverOffset: 4
             }]
@@ -202,8 +245,56 @@
             document.getElementById('myChart'),
             config
         );
-    }
 
+
+
+        // grafico dois
+
+
+        const labelsDois = [
+            'lider',
+            'agrupadas',
+            'guia',
+            'excursionista',
+            'pioneiro',
+            'pesquisador',
+            'companheiro',
+            'amigo'
+        ];
+
+        const dataDois = {
+            labels: labelsDois,
+            datasets: [{
+                label: 'Ultima classe do desbravador',
+                data: [lider, agrupadas, guia, excursionista, pioneiro, pesquisador, companheiro, amigo],
+                backgroundColor: [
+                    'black',
+                    'white',
+                    'yellow',
+                    'purple',
+                    'grey',
+                    'green',
+                    'red',
+                    'blue'
+
+                ],
+                hoverOffset: 4
+            }]
+        };
+
+        const configDois = {
+            type: 'pie',
+            data: dataDois,
+            options: {},
+
+        };
+
+        const myChartDois = new Chart(
+            document.getElementById('myChartDois'),
+            configDois
+        );
+
+    }
 
 
 </script>

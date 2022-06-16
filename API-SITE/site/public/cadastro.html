@@ -85,7 +85,17 @@
                     <input id="nome_clube_input" type="text" placeholder="Nome do seu clube">
                     
                     <span class="tipo_campo">Ultima classe concluida</span>
-                    <input id="ultima_classe_input" type="text" placeholder="Ultima classe concluida?">
+                    <select id="ultima_classe_input">
+                        <option value="selecione">-- SELECIONE --</option>
+                    <option value="AMIGO">Amigo</option>
+                    <option value="COMPANHEIRO">Companheiro</option>
+                    <option value="PESQUISADOR">Pesquisador</option>
+                    <option value="PIONEIRO">Pioneiro</option>
+                    <option value="EXCURSIONISTA">Excursionista</option>
+                    <option value="GUIA">Guia</option>
+                    <option value="AGRUPADAS">Agrupadas</option>
+                    <option value="LIDER">Lider</option>
+                </select>
                     
                     <button class="btn" onclick="cadastrar()">Cadastrar</button>
                     

@@ -202,6 +202,49 @@
         });
     }
 
+    function publicarComentario(idUsuario_pub, idPublicacao, resposta){
+        var idUsuario = sessionStorage.ID_USUARIO;
+
+        var corpo = {
+            //usuario logado
+            idUsuarioServer : idUsuario,
+            //id da pub
+            idPublicacaoServer : idPublicacao,
+            //id do usuario que fez a pub
+            idUsuPubServer : idUsuario_pub,
+            // resposta 
+            respostaServer: resposta.value
+        }
+
+        fetch(`/avisos/publicarResposta/${idUsuario}`, {
+            method: "post",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(corpo)
+        }).then(function (resposta) {
+
+            console.log("resposta: ", resposta);
+
+            if (resposta.ok) {
+                atualizarFeed();
+                window.alert("Post realizado com sucesso pelo usuario: " + sessionStorage.NOME_USUARIO + "!");
+                // window.location = "/dashboard/mural.html";
+                limparFormulario();
+                finalizarAguardar();
+            } else if (resposta.status == 404) {
+                window.alert("Deu 404!");
+            } else {
+                throw ("Houve um erro ao tentar realizar a postagem! Código da resposta: " + resposta.status);
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+            finalizarAguardar();
+        });
+
+        return false;
+    }
+
     function atualizarFeed() {
         //aguardar();
         fetch("/avisos/listar").then(function (resposta) {
@@ -229,27 +272,42 @@
                         var spanNome = document.createElement("span");
                         var divDescricao = document.createElement("div");
                         var divButtons = document.createElement("div");
+                        var divComentario = document.createElement("div");
+                        var textComentario = document.createElement("textarea");
+                        var imgComentario = document.createElement("img");
 
                         spanID.innerHTML = "ID: <b>" + publicacao.idPublicacao + "</b>";
                         spanTitulo.innerHTML = "Título: <b>" + publicacao.titulo + "</b>";
                         spanNome.innerHTML = "Autor: <b>" + publicacao.nome + "</b>";
                         divDescricao.innerHTML = "Descrição: <b>" + publicacao.descricao + "</b>";
+                        // divComentario.innerHTML = "Comentario: <b>" + publicacao.Comentario + "</b>";
+
+                        imgComentario.src = "../assets/icon/enviar-mensagem.png"
 
                         divPublicacao.className = "publicacao";
                         spanTitulo.id = "inputNumero" + publicacao.idPublicacao;
                         spanNome.className = "publicacao-nome";
                         spanTitulo.className = "publicacao-titulo";
                         divDescricao.className = "publicacao-descricao";
-                        divButtons.className = "div-buttons"
+                        divButtons.className = "div-buttons";
+                        divComentario.className = "div-comentario";
+                        textComentario.className = "text-comentario";
+                        textComentario.id = "text-comentario"+publicacao.idPublicacao;
+                        imgComentario.className = "img-comentario";
+
+                        imgComentario.setAttribute("onclick", `publicarComentario(${publicacao.idUsuario}, ${publicacao.idPublicacao}, ${"text-comentario"+publicacao.idPublicacao})`);
 
                         divPublicacao.appendChild(spanID);
                         divPublicacao.appendChild(spanNome);
                         divPublicacao.appendChild(spanTitulo);
                         divPublicacao.appendChild(divDescricao);
                         divPublicacao.appendChild(divButtons);
+                        divPublicacao.appendChild(divComentario);
+                        divComentario.appendChild(textComentario);
+                        divComentario.appendChild(imgComentario);
                         feed.appendChild(divPublicacao);
 
-                        if (sessionStorage.ID_USUARIO == resposta[i].idUsuario || sessionStorage.tpUsuario == 'adm') {
+                        if (sessionStorage.ID_USUARIO == resposta[i].idUsuario || sessionStorage.Tp_Usuario == 'adm') {
                             var btnEditar = document.createElement("button");
                             var btnDeletar = document.createElement("button");
 
