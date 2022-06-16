@@ -93,6 +93,39 @@ function publicar(req, res) {
     }
 }
 
+function publicarResposta(req, res) {
+            
+
+            var idUsuario = req.body.idUsuarioServer;
+    var idPublicacao = req.body.idPublicacaoServer;
+    var idUsuario_pub = req.body.idUsuPubServer;
+    var resposta = req.body.respostaServer;
+
+    if (idPublicacao == undefined) {
+        res.status(400).send("O idPublicacao está indefinido!");
+    } else if (idUsuario_pub == undefined) {
+        res.status(400).send("A idUsuario_pub está indefinido!");
+    } else if (idUsuario == undefined) {
+        res.status(403).send("O id do usuário está indefinido!");
+    }else if (resposta == undefined) {
+        res.status(403).send("O resposta está indefinido!");
+    } else {
+        avisoModel.publicarResposta(idUsuario, idPublicacao, idUsuario_pub, resposta)
+            .then(
+                function (resultado) {
+                    res.json(resultado);
+                }
+            )
+            .catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log("Houve um erro ao realizar o post: ", erro.sqlMessage);
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
+    }
+}
+
 function editar(req, res) {
     var idPublicacao = req.body.idPublicacaoServer;
     var novaDescricao = req.body.descricaoServer;
@@ -137,6 +170,7 @@ module.exports = {
     listarPorUsuario,
     pesquisarDescricao,
     publicar,
+    publicarResposta,
     editar,
     deletar
 }

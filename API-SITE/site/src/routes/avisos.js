@@ -23,6 +23,10 @@ router.post("/publicar/:idUsuario", function (req, res) {
     avisoController.publicar(req, res);
 });
 
+router.post("/publicarResposta/:idUsuario", function (req, res) {
+    avisoController.publicarResposta(req, res);
+});
+
 router.put("/editar", function (req, res) {
     avisoController.editar(req, res);
 });

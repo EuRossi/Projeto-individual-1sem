@@ -202,7 +202,7 @@
         });
     }
 
-    function publicarComentario(idUsuario_pub, idPublicacao, resposta){
+    function publicarComentario(idPublicacao, idUsuario_pub,  resposta){
         var idUsuario = sessionStorage.ID_USUARIO;
 
         var corpo = {
@@ -228,7 +228,7 @@
 
             if (resposta.ok) {
                 atualizarFeed();
-                window.alert("Post realizado com sucesso pelo usuario: " + sessionStorage.NOME_USUARIO + "!");
+                window.alert("Comentario realizado com sucesso pelo usuario: " + sessionStorage.NOME_USUARIO + "!");
                 // window.location = "/dashboard/mural.html";
                 limparFormulario();
                 finalizarAguardar();
@@ -292,10 +292,10 @@
                         divButtons.className = "div-buttons";
                         divComentario.className = "div-comentario";
                         textComentario.className = "text-comentario";
-                        textComentario.id = "text-comentario"+publicacao.idPublicacao;
+                        textComentario.id = "comentario"+publicacao.idPublicacao;
                         imgComentario.className = "img-comentario";
 
-                        imgComentario.setAttribute("onclick", `publicarComentario(${publicacao.idUsuario}, ${publicacao.idPublicacao}, ${"text-comentario"+publicacao.idPublicacao})`);
+                        imgComentario.setAttribute("onclick", `publicarComentario( ${publicacao.idPublicacao},${publicacao.idUsuario}, ${"comentario"+publicacao.idPublicacao})`);
 
                         divPublicacao.appendChild(spanID);
                         divPublicacao.appendChild(spanNome);
