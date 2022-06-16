@@ -9,13 +9,13 @@ create table usuario(
     senha varchar (20) not null,
     tpUsuario char(3) not null,
     constraint ckTpUsu check (tpUsuario = 'adm' or tpUsuario = 'usu'),
-    desbravador char(3) not null,
-    constraint cktDbv check (desbravador = 'sim' or desbravador = 'não'),
-    nomeClube varchar(40),
-    classeAtual varchar(40)
+    -- verificando se é dbv ou não
+    desbravador char(3), 
+    constraint ckDbv check (desbravador = 'sim' or desbravador = 'nao'),
+    nomeClube varchar(20),
+    classeAtual varchar(20)    
     );
     
-    select * from usuario;
     
 create table publicacao(
 	idPublicacao int auto_increment,
@@ -23,11 +23,10 @@ create table publicacao(
     foreign key (fkUsuario) references usuario(idUsuario),
     primary key (idPublicacao, fkUsuario),
     titulo varchar (45) not null,
-    descricao varchar (180) not null,
+    descricao varchar (250) not null,
     dtpub datetime default current_timestamp,
     dtalteracao datetime    
     );
-    
     
 create table  comentario(
 	idComentario int auto_increment,
@@ -42,12 +41,3 @@ create table  comentario(
     dtcometario datetime default current_timestamp,
     dtalteracao datetime
     );
-    
-    select * from usuario;
-    
-	
-    
-
-    
-    
-    
