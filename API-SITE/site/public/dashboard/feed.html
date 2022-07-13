@@ -261,9 +261,11 @@
                     console.log("Dados recebidos: ", JSON.stringify(resposta));
 
                     var feed = document.getElementById("feed_container");
+                    console.log(feed + 'feed')
                     feed.innerHTML = "";
                     for (let i = 0; i < resposta.length; i++) {
                         var publicacao = resposta[i];
+                        console.log(publicacao + "pub")
 
                         // criando e manipulando elementos do HTML via JavaScript
                         var divPublicacao = document.createElement("div");
@@ -275,6 +277,7 @@
                         var divComentario = document.createElement("div");
                         var textComentario = document.createElement("textarea");
                         var imgComentario = document.createElement("img");
+                        var divRespostas = document.createElement("div");
 
                         spanTitulo.innerHTML = "Título: <b>" + publicacao.titulo + "</b>";
                         spanNome.innerHTML = "Autor: <b>" + publicacao.nome + "</b>";
@@ -292,6 +295,9 @@
                         textComentario.className = "text-comentario";
                         textComentario.id = "comentario"+publicacao.idPublicacao;
                         imgComentario.className = "img-comentario";
+                        // div dos comentarios que vai ser atualizada na function atualizarComentario
+                        divRespostas.id = "respostas"+publicacao.idPublicacao;
+                        divRespostas.className = "respostas";
 
                         imgComentario.setAttribute("onclick", `publicarComentario( ${publicacao.idPublicacao},${publicacao.idUsuario}, ${"comentario"+publicacao.idPublicacao})`);
 
@@ -300,6 +306,7 @@
                         divPublicacao.appendChild(divDescricao);
                         divPublicacao.appendChild(divButtons);
                         divPublicacao.appendChild(divComentario);
+                        divPublicacao.appendChild(divRespostas);
                         divComentario.appendChild(textComentario);
                         divComentario.appendChild(imgComentario);
                         feed.appendChild(divPublicacao);
@@ -339,76 +346,32 @@
     // em testes
     function atualizarComentario() {
         //aguardar();
-        fetch("/avisos/listarResposta").then(function (resposta) {
-            if (resposta.ok) {
-                resposta.json().then(function (resposta) {
-                    console.log("Dados recebidos das respostas: ", JSON.stringify(resposta));
+        fetch("/avisos/listarResposta").then(function (respostaComentario) {
+            if (respostaComentario.ok) {
+                respostaComentario.json().then(function (respostaComentario) {
+                    console.log("Dados recebidos das respostas: ", JSON.stringify(respostaComentario));
 
-                    var feed = document.getElementById("feed_container");
-                    // feed.innerHTML = "";
-                    for (let i = 0; i < resposta.length; i++) {
-                        var publicacao = resposta[i];
+                    for (let i = 0; i < respostaComentario.length; i++) {
+                        var comentario = respostaComentario[i];
+
+                        var feedComentario = document.getElementById(`respostas${comentario.fkPublicacao}`);
 
                         // criando e manipulando elementos do HTML via JavaScript
-                        var divPublicacao = document.createElement("div");
-                        var spanID = document.createElement("span");
-                        var spanTitulo = document.createElement("span");
+                        var divRespostas = document.createElement("div");
                         var spanNome = document.createElement("span");
-                        var divDescricao = document.createElement("div");
-                        var divButtons = document.createElement("div");
                         var divComentario = document.createElement("div");
-                        var textComentario = document.createElement("textarea");
-                        var imgComentario = document.createElement("img");
 
-                        // spanID.innerHTML = "ID: <b>" + publicacao.idPublicacao + "</b>";
-                        spanTitulo.innerHTML = "Título: <b>" + publicacao.titulo + "</b>";
-                        spanNome.innerHTML = "Autor: <b>" + publicacao.nome + "</b>";
-                        divDescricao.innerHTML = "Descrição: <b>" + publicacao.descricao + "</b>";
-                        // divComentario.innerHTML = "Comentario: <b>" + publicacao.Comentario + "</b>";
+                        spanNome.innerHTML = "Autor: <b>" + comentario.nome + "</b>";
+                        divComentario.innerHTML = "Comentario: <b>" + comentario.comentario + "</b>";
 
-                        imgComentario.src = "../assets/icon/enviar-mensagem.png"
+                        divRespostas.className = "comentario";
+                        spanNome.className = "comentario-nome";
+                        divComentario.className = "comentario-descricao";
 
-                        divPublicacao.className = "publicacao";
-                        spanTitulo.id = "inputNumero" + publicacao.idPublicacao;
-                        spanNome.className = "publicacao-nome";
-                        spanTitulo.className = "publicacao-titulo";
-                        divDescricao.className = "publicacao-descricao";
-                        divButtons.className = "div-buttons";
-                        divComentario.className = "div-comentario";
-                        textComentario.className = "text-comentario";
-                        textComentario.id = "comentario"+publicacao.idPublicacao;
-                        imgComentario.className = "img-comentario";
+                        divRespostas.appendChild(spanNome);
+                        divRespostas.appendChild(divComentario);
+                        feedComentario.appendChild(divRespostas);
 
-                        imgComentario.setAttribute("onclick", `publicarComentario( ${publicacao.idPublicacao},${publicacao.idUsuario}, ${"comentario"+publicacao.idPublicacao})`);
-
-                        // divPublicacao.appendChild(spanID);
-                        divPublicacao.appendChild(spanNome);
-                        divPublicacao.appendChild(spanTitulo);
-                        divPublicacao.appendChild(divDescricao);
-                        divPublicacao.appendChild(divButtons);
-                        divPublicacao.appendChild(divComentario);
-                        divComentario.appendChild(textComentario);
-                        divComentario.appendChild(imgComentario);
-                        feed.appendChild(divPublicacao);
-
-                        if (sessionStorage.ID_USUARIO == resposta[i].idUsuario || sessionStorage.Tp_Usuario == 'adm') {
-                            var btnEditar = document.createElement("button");
-                            var btnDeletar = document.createElement("button");
-
-                            btnEditar.className = "publicacao-btn-editar"
-                            btnEditar.id = "btnEditar" + publicacao.idPublicacao;
-                            btnEditar.setAttribute("onclick", `editar(${publicacao.idPublicacao})`);
-
-                            btnDeletar.className = "publicacao-btn-editar"
-                            btnDeletar.id = "btnDeletar" + publicacao.idPublicacao;
-                            btnDeletar.setAttribute("onclick", `deletar(${publicacao.idPublicacao})`);
-
-                            btnEditar.innerHTML = "Editar";
-                            btnDeletar.innerHTML = "Deletar";
-
-                            divButtons.appendChild(btnEditar);
-                            divButtons.appendChild(btnDeletar);
-                        }
                     }
 
                     finalizarAguardar();
@@ -416,8 +379,8 @@
             } else {
                 throw ('Houve um erro na API!');
             }
-        }).catch(function (resposta) {
-            console.error(resposta);
+        }).catch(function (respostaComentario) {
+            console.error(respostaComentario);
             finalizarAguardar();
         });
     }
