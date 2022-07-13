@@ -59,10 +59,12 @@
     <main>
         <div class=" container hello">
             <h3>Olá, <span id="b_usuario">usuário</span>!</h3>
+            <img id="mais" style= 'display : none;' class="img-comentario" src="../assets/icon/mais.png" alt="" onclick="abrirPub()">
+            <img id="menos" class="img-comentario" src="../assets/icon/sinal-de-menos.png" alt="" onclick="fecharPub()">
         </div>
         <div class="avisos">
-            <div class="container muralPub">
-                <div class="div-form tamanho-conteudo">
+            <div id="mural_pub" class="container muralPub">
+            <div id="div_form" class="div-form tamanho-conteudo">
                     <h1>Publicação</h1>
                     <form id="form_postagem" method="post" onsubmit="return publicar()">
                         <label>
@@ -343,7 +345,6 @@
         });
     }
 
-    // em testes
     function atualizarComentario() {
         //aguardar();
         fetch("/avisos/listarResposta").then(function (respostaComentario) {
@@ -384,6 +385,24 @@
             finalizarAguardar();
         });
     }
+
+    function abrirPub(){
+        div_form.style.display = "block"
+        mural_pub.style = "justify-content : space-between"
+        mais.style.display = "none"
+        menos.style.display = "block"
+
+    }
+
+    function fecharPub(){
+        div_form.style.display = "none"
+        mural_pub.style = "justify-content : center"
+        mais.style.display = "block"
+        menos.style.display = "none"
+
+    }
+
+    
 
     function testar() {
         aguardar();
